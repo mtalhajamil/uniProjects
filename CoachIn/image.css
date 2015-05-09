@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+.frame {  
+    margin: 1em 0;  
+    height: 350px;
+    width: 460px;
+    border: 1px solid red;
+    position: relative;
+}  
+img {  
+    width:100%;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;  
+    background: #3A6F9A;  
+}

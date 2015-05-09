@@ -1,0 +1,102 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+
+.SignInContainer {
+    width: 1300px;
+    height: 530px;
+    background-color: #FFF;
+    background-image: url(../img/signIn.jpg); 
+}
+
+.SignInRight {
+    padding: 10px 0;
+    width: 530px;
+    height: 70%;
+    float: left;
+    margin: 5%;
+    font-family: 'Times New Roman';
+    color:black;
+    background: rgba(255,255,255, .3);
+}
+
+.SignInLeft {
+font-style: italic;
+font-family: "Buxton Sketch";
+ font-size: large;
+
+font-weight: bolder;
+    float: left;
+    width: 450px;
+    height: 75%;
+    margin-top:5%;
+    margin-left:100px;
+    padding: 10px 0;
+    color:black;
+    background: rgba(255,255,255, .3);
+    
+}
+
+.leftSignInHeaderstrip {
+    width:100%;
+    margin-top: 0;
+    text-align:center;
+    font-variant: small-caps;
+    background: rgba(0,0,0,.5);
+    font-family:'High Tower Text';
+    font-size:large;
+    font-weight:800;
+    color:white;
+}
+
+.rightSignInHeaderstrip {
+    width:100%;
+    margin-top: 0;
+    text-align:center;
+    font-variant: small-caps;
+    font-family:'High Tower Text';
+    font-size:larger;
+    font-weight:800;
+    background: rgba(0,0,0,.5);
+    color:white;
+}
+
+.inputSignInBox {
+    border:none;
+    height:25px;
+    margin-bottom: 18px;
+    width:100%;
+    font-family: 'Times New Roman';
+    padding: 3px;
+    background: rgba(0,0,0, .4);
+    font-weight:bold;
+    font-size:medium;
+}
+
+.Image:hover {
+        border: 5px;
+    border-style: solid;
+    border-color: whitesmoke;
+    background-color:white;
+}
+
+.headerStrip {
+    background-color:#0026ff;
+    height: 25px;
+    width: 1265px;
+    color:white;
+    font-family:'Times New Roman';
+}
+
+.headerStripButton {
+    border:none;
+    background-color:transparent;
+    color:white;
+    float:right;
+    font-family:'Times New Roman';
+}
+
+    .headerStripButton:hover {
+        background-color:black;
+        opacity:0.5;
+    }

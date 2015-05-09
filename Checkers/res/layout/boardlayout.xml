@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_vertical"
+    android:background="@drawable/board"
+    android:orientation="vertical" >
+
+    <ImageButton
+        
+        android:id="@+id/board1"
+        android:layout_width="112dp"
+        android:layout_height="177dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/board1" />
+
+    <ImageButton
+        android:id="@+id/board2"
+        android:layout_toRightOf="@id/board1"
+        android:layout_width="112dp"
+        android:layout_height="177dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/board2" />
+    
+    <ImageButton
+        android:id="@+id/board3"
+        android:layout_below="@id/board2"
+        android:layout_width="112dp"
+        android:layout_height="177dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+         android:background="@drawable/board3"
+         />
+    <ImageButton
+        android:id="@+id/board4"
+        android:layout_below="@id/board2"
+        android:layout_toRightOf="@id/board3"
+        android:layout_width="112dp"
+        android:layout_height="177dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+         android:background="@drawable/board4" />
+
+</RelativeLayout>

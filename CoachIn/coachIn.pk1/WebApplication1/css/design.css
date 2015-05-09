@@ -1,0 +1,153 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.header {
+    background: #000;
+    height: 160px;
+    width: 1265px;
+}
+
+.cf:before,
+.cf:after {
+    content: "";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.cf {
+    zoom: 1;
+}
+
+nav {
+    margin-top: 2%;
+    margin-right: 7.5%;
+    float: right;
+    height: 2.3em;
+}
+/*horizontal menu styles*/
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+}
+
+ul {
+    background: #000;
+    height: 5em;
+    width: 100%;
+}
+
+li {
+}
+
+    li a {
+        display: block;
+        line-height: 5em;
+        padding: 0 1.1em;
+        color: white;
+        text-decoration: none;
+    }
+
+        li a:hover {
+            color: #fff;
+            background: #a5c451;
+            border-bottom: 5px solid #d2f476;
+            height: 5em;
+            padding-top: 2%;
+        }
+
+
+#logo {
+    float: left;
+    margin-top: 20px;
+}
+
+    #logo h1 {
+        margin: 0;
+        padding: 0;
+    }
+
+        #logo h1 a {
+            display: block;
+            width: 400px;
+            height: 86px;
+            color: #fff;
+            text-indent: -10000px;
+            background: url(../img/logo.png) no-repeat top center;
+        }
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #D5973C;
+    text-decoration: underline;
+}
+
+a:active {
+    outline: 0;
+    background: yellow;
+}
+
+a:focus {
+    outline: 2px solid red;
+}
+
+.detail {
+    width: 450px;
+    padding: 20px;
+    line-height: 1.4em;
+    background: rgb(184,205,205);
+    display: block;
+}
+
+    .detail h2 {
+        font-size: 1.6em;
+        margin-top: 0;
+    }
+
+    .detail img {
+        float: left;
+        margin-right: 1em;
+    }
+
+    .detail p {
+        color: black;
+    }
+
+    .detail .price {
+        font-weight: bold;
+        text-align: right;
+        margin-bottom: 0;
+    }
+
+    .detail:hover {
+        text-decoration: none;
+        background: #c8e5f0;
+        border-color: rgb(36,54,70);
+    }
+
+#main {
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 80%;
+}
+
+#coach {
+    margin-top: 5%;
+    padding: 5px 5px 5px 5px;
+    float: left;
+}
+
+#college {
+    float: right;
+}
+
+#teach {
+    margin-top: 2%;
+}

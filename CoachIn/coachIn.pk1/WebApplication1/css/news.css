@@ -1,0 +1,105 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.newsLeft {
+    padding: 10px 0;
+    width: 480px;
+    height:460px;
+    overflow:scroll;
+    float: left;
+    margin: 5%;
+    font-family: 'Times New Roman';
+    color:white;
+    background: rgba(0,0,0,0.2);
+
+}
+
+.newsRight {
+    float: left;
+    width: 340px;
+    height:460px;
+    margin-top:5%;
+    padding: 10px 0;
+    background-color: transparent;
+}
+
+.newsUpperContainer {
+    width: 960px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 auto;
+}
+
+.newsContainer {
+    width: 960px;
+    height:700px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 auto;
+    margin-bottom:10px;
+    background-image: url(../img/GeneralNews.jpg);
+}
+
+.NewsShow {
+    background-color: azure;
+    background: rgba(255,255,255, .2);
+    margin-bottom: 10px;
+    font-family: 'High Tower Text';
+    padding: 0 0 0 5px;
+    border: none;
+    font-size: large;
+    text-align: left;
+    word-break: keep-all;
+    color:black;
+}
+
+.searchContainer {
+    width: 960px;
+    height:auto;
+    background: rgba(255,255,255,0.2);
+    margin: 0 auto;
+    margin-bottom:10px;
+    background-image: url(../img/searchPage.jpg);
+    height:500px;
+    overflow:scroll;
+}
+
+.SearchShow {
+    background-color: azure;
+    background: rgba(0,0,0, .5);
+    margin-bottom: 10px;
+    font-family: 'High Tower Text';
+    padding: 0 0 0 5px;
+    border: none;
+    font-size: large;
+    text-align: left;
+    word-break: keep-all;
+    color:white;
+    padding:5px;
+}
+
+.searchrespect {
+    color:azure;
+    font-weight:bolder;
+    font-family:Consolas;
+}
+
+.searchUpperContainer {
+    width: 960px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 auto;
+    text-align:center;
+    font-weight:bolder;
+    font-family:AngsanaUPC;
+    font-size:2em;
+}
+
+.inputSearchPageBox {
+    border:none;
+    height:25px;
+    margin-bottom: 18px;
+    width:100%;
+    font-family: 'Times New Roman';
+    background: rgba(0,0,0, .4);
+    font-weight:bold;
+    font-size:medium;
+    text-align:center;
+}

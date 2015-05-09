@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24F8D03A-73FB-480C-B69B-582267069AF1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApplication1</RootNamespace>
+    <AssemblyName>WebApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin.aspx" />
+    <Content Include="AdminPages\AddAnnouncement.aspx" />
+    <Content Include="AdminPages\AddNews.aspx" />
+    <Content Include="AdminPages\BranchAdmin.aspx" />
+    <Content Include="AdminPages\CoachingAdmin.aspx" />
+    <Content Include="AdminPages\CourseAdmin.aspx" />
+    <Content Include="App_Data\CoachIn.mdf" />
+    <Content Include="App_Data\CoachIn_log.ldf">
+      <DependentUpon>CoachIn.mdf</DependentUpon>
+    </Content>
+    <Content Include="Controls\footer.ascx" />
+    <Content Include="Controls\header.ascx" />
+    <Content Include="Controls\headerStrip.ascx" />
+    <Content Include="css\admin.css" />
+    <Content Include="css\front.css" />
+    <Content Include="css\JQueryStyle.css" />
+    <Content Include="css\news.css" />
+    <Content Include="css\design.css" />
+    <Content Include="css\decoration.css" />
+    <Content Include="css\signIn.css" />
+    <Content Include="css\signUp.css" />
+    <Content Include="im1\01.jpg" />
+    <Content Include="im1\02.jpg" />
+    <Content Include="im1\03.jpg" />
+    <Content Include="im1\04.jpg" />
+    <Content Include="im1\05.jpg" />
+    <Content Include="im1\06.jpg" />
+    <Content Include="img\elearning_image.jpg" />
+    <Content Include="img\favicon.ico" />
+    <Content Include="im1\n02.png" />
+    <Content Include="im1\n03.png" />
+    <Content Include="img\AddBranch.jpg" />
+    <Content Include="img\AddSubject.jpg" />
+    <Content Include="img\CoachIn.png" />
+    <Content Include="img\Container.jpg" />
+    <Content Include="img\finish.gif" />
+    <Content Include="img\GeneralNews.jpg" />
+    <Content Include="img\innerContainer.jpg" />
+    <Content Include="img\login.gif" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo_coaching.jpg" />
+    <Content Include="img\logo_news.jpg" />
+    <Content Include="img\logo_register.png" />
+    <Content Include="img\logo_search.png" />
+    <Content Include="img\next.png" />
+    <Content Include="img\searchPage.jpg" />
+    <Content Include="img\signIn.jpg" />
+    <Content Include="img\signup.jpg" />
+    <Content Include="img\SubjectAdd.jpg" />
+    <Content Include="img\tileBack.jpg" />
+    <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\JQuery.js" />
+    <Content Include="js\jssor.core.js" />
+    <Content Include="js\jssor.player.ytiframe.js" />
+    <Content Include="js\jssor.player.ytiframe.min.js" />
+    <Content Include="js\jssor.slider.debug.min.js" />
+    <Content Include="js\jssor.slider.js" />
+    <Content Include="js\jssor.slider.min.js" />
+    <Content Include="js\jssor.slider.mini.js" />
+    <Content Include="js\jssor.sliderc.mini.js" />
+    <Content Include="js\jssor.sliders.mini.js" />
+    <Content Include="js\jssor.utils.js" />
+    <Content Include="ManagerPages\AddRemoveCoaching.aspx" />
+    <Content Include="script\jquery.min.js" />
+    <Content Include="SignUp\forgetpassword.aspx" />
+    <Content Include="SignUp\SubjectAddition.aspx" />
+    <Content Include="SignUp\BranchAddition.aspx" />
+    <Content Include="SignUp\CourseAddition.aspx" />
+    <Content Include="SignUp\SignIn.aspx" />
+    <Content Include="SignUp\SignUp4.aspx" />
+    <Content Include="UserPages\AnnouncementPage.aspx" />
+    <Content Include="UserPages\BranchPage.aspx" />
+    <Content Include="UserPages\CoachingDisplay.aspx" />
+    <Content Include="UserPages\CoachingPage.aspx" />
+    <Content Include="css\style.css" />
+    <Content Include="img\background.jpg" />
+    <Content Include="img\header.jpg" />
+    <Content Include="UserPages\FrontPage.aspx" />
+    <Content Include="UserPages\GeneralNews.aspx" />
+    <Content Include="UserPages\NewsPage.aspx" />
+    <Content Include="SignUp\SignUp1.aspx" />
+    <Content Include="SignUp\SignUp2.aspx" />
+    <Content Include="SignUp\SignUp3.aspx" />
+    <Content Include="UserPages\Searching.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AddAnnouncement.aspx.cs">
+      <DependentUpon>AddAnnouncement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AddAnnouncement.aspx.designer.cs">
+      <DependentUpon>AddAnnouncement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\AddNews.aspx.cs">
+      <DependentUpon>AddNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\AddNews.aspx.designer.cs">
+      <DependentUpon>AddNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\BranchAdmin.aspx.cs">
+      <DependentUpon>BranchAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\BranchAdmin.aspx.designer.cs">
+      <DependentUpon>BranchAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\CoachingAdmin.aspx.cs">
+      <DependentUpon>CoachingAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\CoachingAdmin.aspx.designer.cs">
+      <DependentUpon>CoachingAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\CourseAdmin.aspx.cs">
+      <DependentUpon>CourseAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\CourseAdmin.aspx.designer.cs">
+      <DependentUpon>CourseAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\footer.ascx.cs">
+      <DependentUpon>footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\footer.ascx.designer.cs">
+      <DependentUpon>footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\header.ascx.cs">
+      <DependentUpon>header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\header.ascx.designer.cs">
+      <DependentUpon>header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\headerStrip.ascx.cs">
+      <DependentUpon>headerStrip.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\headerStrip.ascx.designer.cs">
+      <DependentUpon>headerStrip.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerPages\AddRemoveCoaching.aspx.cs">
+      <DependentUpon>AddRemoveCoaching.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerPages\AddRemoveCoaching.aspx.designer.cs">
+      <DependentUpon>AddRemoveCoaching.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\AddSubject.aspx.cs">
+      <DependentUpon>SubjectAddition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\AddSubject.aspx.designer.cs">
+      <DependentUpon>SubjectAddition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\BranchAddition.aspx.cs">
+      <DependentUpon>BranchAddition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\BranchAddition.aspx.designer.cs">
+      <DependentUpon>BranchAddition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\CourseAddition.aspx.cs">
+      <DependentUpon>CourseAddition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\CourseAddition.aspx.designer.cs">
+      <DependentUpon>CourseAddition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\forgetpassword.aspx.cs">
+      <DependentUpon>forgetpassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\forgetpassword.aspx.designer.cs">
+      <DependentUpon>forgetpassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\SignIn.aspx.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\SignIn.aspx.designer.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\SignUp4.aspx.cs">
+      <DependentUpon>SignUp4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\SignUp4.aspx.designer.cs">
+      <DependentUpon>SignUp4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\AnnouncementPage.aspx.cs">
+      <DependentUpon>AnnouncementPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\AnnouncementPage.aspx.designer.cs">
+      <DependentUpon>AnnouncementPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\BranchPage.aspx.cs">
+      <DependentUpon>BranchPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\BranchPage.aspx.designer.cs">
+      <DependentUpon>BranchPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\CoachingDisplay.aspx.cs">
+      <DependentUpon>CoachingDisplay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\CoachingDisplay.aspx.designer.cs">
+      <DependentUpon>CoachingDisplay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\CoachingPage.aspx.cs">
+      <DependentUpon>CoachingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\CoachingPage.aspx.designer.cs">
+      <DependentUpon>CoachingPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\FrontPage.aspx.cs">
+      <DependentUpon>FrontPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\FrontPage.aspx.designer.cs">
+      <DependentUpon>FrontPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\GeneralNews.aspx.cs">
+      <DependentUpon>GeneralNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\GeneralNews.aspx.designer.cs">
+      <DependentUpon>GeneralNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\NewsPage.aspx.cs">
+      <DependentUpon>NewsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\NewsPage.aspx.designer.cs">
+      <DependentUpon>NewsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignUp\SignUp1.aspx.cs">
+      <DependentUpon>SignUp1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\SignUp1.aspx.designer.cs">
+      <DependentUpon>SignUp1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\SignUp2.aspx.cs">
+      <DependentUpon>SignUp2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\SignUp2.aspx.designer.cs">
+      <DependentUpon>SignUp2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp\SignUp3.aspx.cs">
+      <DependentUpon>SignUp3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp\SignUp3.aspx.designer.cs">
+      <DependentUpon>SignUp3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\Searching.aspx.cs">
+      <DependentUpon>Searching.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\Searching.aspx.designer.cs">
+      <DependentUpon>Searching.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UserPages\ImgHandler.ashx" />
+    <Content Include="AdminPages\ImgHandler.ashx" />
+    <Content Include="js\jssor.player.ytiframe.compress.bat" />
+    <Content Include="js\jssor.slider.debug.min.compress.bat" />
+    <Content Include="js\jssor.slider.min.compress.bat" />
+    <Content Include="js\jssor.slider.mini.compress.bat" />
+    <Content Include="js\jssor.sliderc.mini.compress.bat" />
+    <Content Include="js\jssor.sliders.mini.compress.bat" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:13169/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

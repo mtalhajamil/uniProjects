@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+
+            /*
+            .jssorn02 div           (normal)
+            .jssorn02 div:hover     (normal mouseover)
+            .jssorn02 .av           (active)
+            .jssorn02 .av:hover     (active mouseover)
+            .jssorn02 .dn           (mousedown)
+            */
+            .jssorn02 div, .jssorn02 div:hover, .jssorn02 .av
+            {
+                background: url(../im1/n02.png) no-repeat;
+                overflow:hidden;
+                cursor: pointer;
+            }
+            .jssorn02 div { background-position: -5px -5px; }
+            .jssorn02 div:hover, .jssorn02 .av:hover { background-position: -35px -5px; }
+            .jssorn02 .av { background-position: -65px -5px; }
+            .jssorn02 .dn, .jssorn02 .dn:hover { background-position: -95px -5px; }
+
+
+
+        /* jssor slider navigator skin 03 css */
+        /*
+        .jssorn03 div           (normal)
+        .jssorn03 div:hover     (normal mouseover)
+        .jssorn03 .av           (active)
+        .jssorn03 .av:hover     (active mouseover)
+        .jssorn03 .dn           (mousedown)
+        */
+        .jssorn03 div, .jssorn03 div:hover, .jssorn03 .av
+        {
+            background: url(../im1/n03.png) no-repeat;
+            overflow:hidden;
+            cursor: pointer;
+        }
+        .jssorn03 div { background-position: -5px -4px; }
+        .jssorn03 div:hover, .jssorn03 .av:hover { background-position: -35px -4px; }
+        .jssorn03 .av { background-position: -65px -4px; }
+        .jssorn03 .dn, .jssorn03 .dn:hover { background-position: -95px -4px; }

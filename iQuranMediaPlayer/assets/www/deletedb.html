@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Storage Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+
+
+// this is called when an error happens in a transaction 
+function errorHandler(transaction, error) { 
+  alert('Error: ' + error.message + ' code: ' + error.code); 
+
+} 
+
+// this is called when a successful transaction happens 
+function successCallBack() { 
+   //alert("DEBUGGING: success"); 
+} 
+
+
+function nullHandler(){}; 
+
+
+function AddValueToDB(){
+  var dbname;
+
+  dbname = 'Wsql4';
+  var db = window.openDatabase(dbname, "1.0", dbname, 65535);
+  db.transaction(function(tx) { 
+    tx.executeSql('DROP TABLE IF EXISTS Ayat');
+    tx.executeSql('DROP TABLE IF EXISTS VoiceNotes');
+    tx.executeSql('DROP TABLE IF EXISTS TextNotes');
+    tx.executeSql('DROP TABLE IF EXISTS BookMarks');
+},errorHandler,nullHandler); 
+
+}
+
+function onBodyLoad(){
+      /*var dbname;
+      for(var i=0;i<25;i++){
+        dbname = 'Wsql' + i;
+        var db = window.openDatabase(dbname, "1.0", dbname, 65535);
+        db.transaction(populateDB,successCB,,errorCB);
+    }*/
+}
+
+
+
+</script>
+</head onload="onBodyLoad()">
+<body>
+    <h1>Example</h1>
+    <p>Database</p>
+    <input type="button" value="Delete All" onClick="AddValueToDB()"> 
+    <br> 
+    <span style="font-weight:bold;">Currently stored values:</span> 
+    <span id="lbUsers"></span> 
+</body>
+</html>

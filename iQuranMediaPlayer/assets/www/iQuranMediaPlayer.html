@@ -1,0 +1,790 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+	"http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+
+	<link rel="stylesheet" href="css/themes/default/green.css" id="style">
+
+	<script type='text/javascript' > 
+		var db; 
+		var shortName = 'Wsql4'; 
+		var version = '1.0'; 
+		var displayName = 'Wsql4'; 
+		var maxSize = 65535;
+		var checkIfDbMade;
+		var bmark=0;
+		var surahNo = 0;
+		var aiyahNo=0;
+		var MyRecordNo=0;
+		var soundRecord = 0;
+		var bAiyah=0;
+		var UsedAyat=null;
+		var paraNo=0;
+		var surahName='BookMark';
+		var bookmarkAiyahNo=0;
+		var tHistory_ayat=0;
+		var vHistory_ayat=0;
+		var selectAudioToPlay = 0;
+		var VNote_Text = 'A';
+		var voiceNotePath;
+		var mediaRec;
+		var recInterval;
+		var playInterval;
+		var audioDir = 'iQuranMedia/VoiceNotes/';
+		var mediaPlay = null;
+		var toggleDisplayVNotes = 0;
+		var toggleDisplayTNotes = 0;
+	</script>
+
+
+	<script src="cordova.js" charset="utf-8"></script>
+	<script src="dataPopulate.js" charset="utf-8"></script>
+	<script src="audioPlay.js" charset="utf-8"></script>
+	<script src="bookMark.js" charset="utf-8"></script>
+	<script src="textNotes.js" charset="utf-8"></script>
+	<script src="voiceNotes.js" charset="utf-8"></script>
+	<script src="js/jquery.js"></script>
+	<script src="_assets/js/index.js"></script>
+	<script src="js/jquery.mobile-1.4.3.js"></script>
+
+	<meta name="viewport" content="width=default-width, user-scalable=no" /> 
+	<meta http-equiv="Content-type" content="text/html;charset=utf-8"> 
+
+	<title>iQuranMediaPlayer</title> 
+
+
+
+</head> 
+<body onload="onBodyLoad()"> 
+
+
+
+	<section id="SurahPage" data-role="page" >
+		<div data-role="header">
+			<h1>iQuranMediaPlayer</h1>
+			<a href="#nav-panel" id="DisplayBookmarks" data-icon="myapp-settings">Bookmarks</a>
+			<a href="#add-form" id="DisplayNotes" data-icon="myapp-settings">Notes</a>
+		</div>
+
+
+		<div data-role="panel" data-position="right" data-display="overlay" data-theme="a" id="add-form">
+
+			<div id="MyNotes" class="ui-color-theme">
+				<h2>My Notes</h2>
+				<ul id="NoteList" data-filter="true" class="Nclicks" data-role="listview" data-inset="true"></ul>
+			</div>
+		</div>
+
+
+		<div data-role="panel" data-position="left" data-display="overlay" data-theme="a" id="nav-panel">
+
+			<div id="MyBookmarks" class="ui-color-theme">
+
+				<h2>My Bookmarks</h2>
+				<ul id="BookmarkList" data-filter="true" class="bclicks" data-role="listview" data-inset="true"></ul>
+			</div>
+
+
+		</div><!-- /panel -->
+
+		<div data-role="content">
+
+
+			<div class="ui-grid-b">
+				<div id="SNum" class="ui-block-a ui-color-theme" style="width:18%;"><h4 style="text-align: center;">Surah</h4>
+
+
+					<ul class="snum_clicks" data-role="listview" data-inset="true" data-split-theme="d"></ul>
+				</div>
+
+				<div id="Surah" class="ui-block-b ui-color-theme" style="width:67%;"><h3 style="text-align: center;">Surah Name</h3>
+
+
+					<ul class="clicks" data-role="listview" data-inset="true" data-split-theme="d" ></ul>
+				</div>
+				<div id="PNum" class="ui-block-c ui-color-theme" style="width:15%;"><h4 style="text-align: center;">Para</h4>
+					<ul class="pnum_clicks" data-role="listview" data-inset="true" data-split-theme="d"></ul>
+				</div>
+			</div>
+
+
+		</div>
+
+
+
+	</section>
+
+	<section id="popup" data-role="page">
+		<div data-role="header">
+			<h1>iQuran Media Player</h1>
+			<a href="#SurahPage" id="DisplayBookmarks" data-rel="back" data-icon="myapp-settings">Home</a>
+			<a href="#options" data-icon="myapp-settings">Options</a>
+			<a href="#" id="selectAudio" data-icon="audio" data-iconpos="notext"></a>
+
+		</div>
+
+		<div data-role="panel" data-position="right" data-display="overlay" data-theme="a" id="options">
+
+			<div class="ui-color-theme">    
+
+				<ul data-role="listview" class="ui-listview-outer" data-inset="true">
+					<li data-role="collapsible" data-iconpos="right" data-shadow="false" data-corners="false">
+						<h2>Change Theme:</h2>
+						<ul data-inset="true">
+
+							<li><a href="#" class="ui-btn ui-shadow ui-corner-all" style="background-color: #95DD59;" onclick="ChangeTheme('green')"></a></li>
+							<li><button href="#" class="ui-btn ui-shadow ui-corner-all" style="background-color: #24CBCB;" onclick="ChangeTheme('blue')"></button></li>  
+							<li><a href="#" class="ui-btn ui-shadow ui-corner-all" style="background-color: #F4BEEF;" onclick="ChangeTheme('pink')"></a></li>
+							<li><a href="#" class="ui-btn ui-shadow ui-corner-all" style="background-color: #B7594E;" onclick="ChangeTheme('brown')"></a></li>
+
+						</ul>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+
+		<div data-role="content">
+			<div id="Ayat">
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a">  <input type="button" id="AddMyNotes" value="MyNotes"/></div>
+					<div class="ui-block-b">  <input type="button" id="VNotesPlay" value="Show VoiceNotes"/></div>
+				</fieldset>
+				<ul id="AyatList" class="ayatclicks" data-role="listview"></ul>
+			</div>
+			<br/><br/> 
+		</div>
+
+	</section>
+
+	<section data-role="page" id="tapNhold">
+
+		<div data-role="header">
+			<h2>Option List</h2>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-inset="true">
+				<li id="bookmark"><a href="#" data-transition="slidefade" data-rel="dialog"><img src="bookmark.png"  /> <i>Bookmark this Ayat</i></a></li>
+				<li id="text"><a href="#"><img src="notes.png"  /> <i>Add a TextNote</i></a></li>
+				<li id="voice"><a href="#"><img src="voicenote.png"  /> <i>Add a VoiceNote</i></a></li>
+			</ul>
+		</div>
+	</section>
+
+	<section data-role="page" id="Addbookmark">
+
+		<div data-role="header" >
+			<h2>Addbookmark</h2>
+		</div>
+		<div data-role="content">
+
+
+			<fieldset class="ui-grid-a">
+
+				<div class="ui-block-a" style="width:80%;"><input type="text" id="bmark" placeholder="Bookmark Name" value="" data-mini="true" data-clear-btn="true" /></div>
+				<div class="ui-block-b" style="width:20%;"> <button href="#" ><img src="plus.png" style="height:40% ; width:60%; " id="add" /> </button></div>     
+			</fieldset>
+
+		</div>
+	</section>
+
+	<section data-role="page" id="TextNotes" >
+
+		<div data-role="header" id="top" >
+			<h2>Notes</h2>
+			<ul data-role="listview" id="N_Ayat"></ul>
+		</div>
+		<div data-role="content" >
+			<textarea id="myText" placeholder="Write Text Notes">
+			</textarea>
+			<a href="#" data-role="button" data-icon="plus" id="T_text">Add Note</a>
+
+		</div>
+
+	</section>
+
+	<section data-role="page" id="voiceNote">
+
+		<div data-role="header" >
+			<h2>AddVoiceNotes</h2>
+		</div>
+		<div data-role="content">
+
+
+			<input type="button" id="recordButton" value="Record">
+
+			<p id="media"></p>
+			<p id="audio_position"></p><br><br>
+			<span id="DArea"></span> <br>
+			<span id="TestArea"></span>   
+
+		</div>
+	</section>
+
+	<section data-role='page' id='selectSpeaker' class="ui-color-theme">
+		<input type="radio" name="group1" id="speaker1" value="1"> <label for="speaker1">Dr Israr Ahmed</label>
+		<input type="radio" name="group1" id="speaker2" value="2"> <label for="speaker2">Hafiz Akif Saeed</label>
+		<input type="radio" name="group1" id="speaker3" value="3"> <label for="speaker3">Engineer Naveed Ahmed</label>
+		<input type="radio" name="group1" id="speaker4" value="0"> <label for="speaker4">Mute Audio</label>
+
+	</section>
+
+
+	<script type="text/javascript" charset="utf-8">
+
+
+
+	function indexPage()
+		{
+
+			for(var i=1; i<=30; i++)
+			{
+				$('#PNum ul').append('<li data-num=\''+ i +'\'><a  href="#popup" class="ui-btn ui-shadow ui-corner-all" style="text-align: center;" data-transition="pop">' + i + '</a></li>');
+			}
+/////////////////////////////////////////////////////////////
+$("#DisplayBookmarks").on("click", function(){
+	$('#BookmarkList').empty();
+	db.transaction(function(transaction) 
+	{ 
+		transaction.executeSql('SELECT BMark,SurahNo,AiyahNo FROM BookMarks ;', [],function(transaction, result) 
+		{ 
+			if (result != null && result.rows != null) 
+			{ 
+//  alert(result.rows.length);
+for (var bm = 0; bm < result.rows.length; bm++) 
+{ 
+	var rowb = result.rows.item(bm); 
+	var idb=bm+1;
+$('#MyBookmarks ul').append('<li data-surah=\''+ rowb.SurahNo + '\'  data-para=\''+ rowb.AiyahNo + '\'><a  href="#popup" class="ui-btn ui-shadow ui-corner-all"><div data-role="content">' + rowb.BMark + '</div></a></li>'); //id=\''+ rowb.SurahNo +'\'
+} 
+} 
+},errorHandler); 
+	},errorHandler,nullHandler);
+});
+
+$(".bclicks").on("click","li", function(){
+
+	surahNo= $(this).attr('data-surah');
+	bAiyah=$(this).attr('data-para');
+	bmark=1;
+	pageAyat();
+});
+
+
+
+//////////////////////////////////////////////////////////////
+
+
+///////////////////////////NoteDisplay//////////////////////////////////
+$("#DisplayNotes").on("click", function(){
+	$('#NoteList').empty();
+	db.transaction(function(transaction) 
+	{ 
+		transaction.executeSql('SELECT TNote,SurahNo,AiyahNo FROM TextNotes ;', [],function(transaction, result) 
+		{ 
+			if (result != null && result.rows != null) 
+			{ 
+//  alert(result.rows.length);
+for (var tn = 0; tn < result.rows.length; tn++) 
+{ 
+	var rowb = result.rows.item(tn); 
+//var idb=bm+1;
+$('#MyNotes ul').append('<li id=\''+ rowb.SurahNo +'\'  data-para=\''+ rowb.AiyahNo + '\'><a  href="#popup" class="ui-btn ui-shadow ui-corner-all"><div data-role="content" style="white-space:normal;">' + rowb.TNote + '</div></a></li>');
+} 
+} 
+},errorHandler); 
+	},errorHandler,nullHandler);
+});
+
+$(".Nclicks").on("click","li", function(){
+
+	surahNo= $(this).attr('id');
+	bAiyah=$(this).attr('data-para');
+	bmark=1;
+	pageAyat();
+});
+
+
+
+//////////////////////////////////////////////////////////////
+
+db.transaction(function(transaction) 
+{ 
+	transaction.executeSql('SELECT distinct(SurahName) FROM Ayat order by SurahNo;', [],function(transaction, result) 
+	{ 
+		if (result != null && result.rows != null) 
+		{ 
+//alert(result.rows.length);
+for (var j = 0; j < result.rows.length; j++) 
+{ 
+	var row = result.rows.item(j); 
+	var id=j+1;
+	$('#Surah ul').append('<li  data-surah=\''+ id + '\'><a  href="#popup" class="ui-btn ui-shadow ui-corner-all" style="text-align: center;" data-transition="pop">' + row.SurahName + '</a></li>');
+
+$('#SNum ul ').append('<li  data-id=\''+ id +'\' data-sName=\''+ row.SurahName +'\'><a  href="#popup" class="ui-btn ui-shadow ui-corner-all" style="text-align: center;" data-transition="pop">' + id + '</a></li>');//id=\''+ id +'\'
+} 
+} 
+},errorHandler); 
+},errorHandler,nullHandler);
+
+
+$(".clicks").on("click","li", function()
+{       
+
+	sName = $(this).attr('data-sName');
+	surahNo= $(this).attr('data-surah');
+// alert(surahNo);
+
+pageAyat();
+});
+
+$(".snum_clicks").on("click","li", function(){
+	surahNo= $(this).attr('data-id');
+	sName = $(this).attr('data-sName');
+	pageAyat();
+});
+$(".pnum_clicks").on("click","li", function(){
+	parahNo= $(this).attr('data-num');
+	pageSurah();
+});
+
+}
+
+function pageSurah()
+{
+	$('#AyatList').empty();
+	db.transaction(function(transaction) 
+	{ 
+		transaction.executeSql('SELECT SurahNo,AiyahNo,SurahName FROM Ayat where ParahNo='+ parahNo +';', [],function(transaction, result) 
+		{ 
+			if (result != null && result.rows != null) 
+			{
+				surahNo = (result.rows.item(0)).SurahNo;
+				bAiyah = (result.rows.item(0)).AiyahNo;
+				sName = (result.rows.item(0)).SurahName;
+				bmark = 1;
+
+				pageAyat();
+			} 
+		},errorHandler); 
+	},errorHandler,nullHandler);
+}
+
+function  pageAyat(){
+	$('#AyatList').empty();
+	$('#AddMyNotes').attr("disabled", false);
+
+	db.transaction(function(transaction) 
+	{ 
+
+		transaction.executeSql('SELECT AiyahNo,SurahName,RecordNo,Rasm_e_Imlai,ParahNo,Israr_Ahmed,Aakif_Saeed,Naveed_Ahmed FROM Ayat where SurahNo='+ surahNo +';', [],function(transaction, result) 
+		{ 
+			if (result != null && result.rows != null) 
+			{ 
+// alert(result.rows.length);
+for (var k = 0; k < result.rows.length; k++) 
+{ 
+	var row1 = result.rows.item(k); 
+	var id=k+1;
+	if(bmark==1 && id==bAiyah)
+	{
+
+		$('#Ayat ul').append('<li id=\''+ id +'\' data-SurahName=\''+ row1.SurahName +'\' data-AiyahNo=\''+ row1.AiyahNo +'\' data-para=\''+ row1.ParahNo + '\' data-Israr=\''+ row1.Israr_Ahmed + '\' data-Aakif=\''+ row1.Aakif_Saeed + '\' data-Naveed=\''+ row1.Naveed_Ahmed + '\' data-ayat=\''+ row1.Rasm_e_Imlai + '\' data-record=\''+ row1.RecordNo + '\' ><a  href="#" class="ui-btn ui-shadow ui-corner-all " ><div data-role="content"  class="ui-color-theme" style="white-space:normal; text-align: right;">' + row1.Rasm_e_Imlai + '</div></a></li>');
+
+		$('#Ayat ul').append('<li id=\''+ 'T' + id +'\' data-para=\''+ row1.ParahNo + '\' data-ayat=\''+ row1.Rasm_e_Imlai + '\' data-record=\''+ row1.RecordNo + '\' ><a  href="#" class="ui-btn ui-shadow ui-corner-all " ><div data-role="content"  class="ui-color-theme" style="white-space:normal; text-align: right;"></div></a></li>');
+
+		$('#Ayat ul').append('<li id=\''+ 'V' + id +'\' data-para=\''+ row1.ParahNo + '\' data-ayat=\''+ row1.Rasm_e_Imlai + '\' data-record=\''+ row1.RecordNo + '\' ><a  href="#" class="ui-btn ui-shadow ui-corner-all " ><div data-role="content"  class="ui-color-theme" style="white-space:normal; text-align: right;"></div></a></li>');
+
+		$('#Ayat ul').append('<li id=\''+ 'AudioTime' + id +'\'><a  href="#" class="ui-btn ui-shadow ui-corner-all " ><div data-role="content"  class="ui-color-theme" style="white-space:normal; text-align: right;"></div></a></li>');
+
+		$('#AudioTime'+id).html('');
+		$('#T'+id).html('');
+		$('#V'+id).html('');
+
+		bmark=0;
+
+	}
+	else
+	{
+		$('#Ayat ul').append('<li id=\''+ id +'\' data-SurahName=\''+ row1.SurahName +'\' data-AiyahNo=\''+ row1.AiyahNo  +'\' data-para=\''+ row1.ParahNo + '\' data-Israr=\''+ row1.Israr_Ahmed + '\' data-Aakif=\''+ row1.Aakif_Saeed + '\' data-Naveed=\''+ row1.Naveed_Ahmed + '\' data-ayat=\''+ row1.Rasm_e_Imlai + '\' data-record=\''+ row1.RecordNo + '\' ><a  href="#" class="ui-btn ui-shadow ui-corner-all" ><div data-role="content" style="white-space:normal; text-align: right;"> ' + row1.Rasm_e_Imlai + '</div></a></li>');
+
+		$('#Ayat ul').append('<li id=\''+ 'T' + id +'\' data-para=\''+ row1.ParahNo + '\' data-ayat=\''+ row1.Rasm_e_Imlai + '\' data-record=\''+ row1.RecordNo + '\' ><a  href="#" class="ui-btn ui-shadow ui-corner-all" ><div data-role="content" style="white-space:normal; text-align: right;"></div></a></li>');
+
+		$('#Ayat ul').append('<li id=\''+ 'V' + id +'\' data-para=\''+ row1.ParahNo + '\' data-ayat=\''+ row1.Rasm_e_Imlai + '\' data-record=\''+ row1.RecordNo + '\' ><a  href="#" class="ui-btn ui-shadow ui-corner-all" ><div data-role="content" style="white-space:normal; text-align: right;"></div></a></li>');
+
+		$('#Ayat ul').append('<li id=\''+ 'AudioTime' + id +'\'><a  href="#" class="ui-btn ui-shadow ui-corner-all " ><div data-role="content"  class="ui-color-theme" style="white-space:normal; text-align: right;"></div></a></li>');
+
+		$('#AudioTime'+id).html('');
+		$('#T'+id).html('');
+		$('#V'+id).html('');
+
+
+	}
+} 
+} 
+},errorHandler); 
+},errorHandler,nullHandler);
+
+	if(toggleDisplayTNotes)
+		appendTextNotes();
+
+	if (toggleDisplayVNotes)
+		appendVoiceNotes();
+}
+
+
+
+
+
+///////////////////////////tap n hold///////////////////////////////////////////
+
+$(".ayatclicks").on("taphold","li", function(){
+	aiyahNo=$(this).attr('id');
+	paraNo=$(this).attr('data-para');
+	MyRecordNo=$(this).attr('data-record');
+	UsedAyat=$(this).attr('data-ayat');
+	surahName=$(this).attr('data-SurahName');
+	bookmarkAiyahNo=$(this).attr('data-AiyahNo');
+//  pageOptions();
+$.mobile.changePage( "#tapNhold", { transition: "pop", role: "dialog" } );
+
+});
+
+
+
+	$("#add").on("click", function(){
+
+		if( jQuery.trim($('#bmark').val()).length==0)
+			{ alert("Give a proper Name");}
+		else
+			{var valb=$('#bmark').val();
+		db.transaction(function(tx)
+		{
+			tx.executeSql('INSERT INTO BookMarks Values(?, ? , ?, ?)', [surahNo, aiyahNo, paraNo, valb]);
+		});  
+
+	$.mobile.changePage( "#popup", { transition: "slide", direction:"reverse" } );
+	alert ("Bookmark " + valb + " Inserted");
+}
+
+});  
+
+
+	$("#bookmark").on("click", function(){
+
+		$.mobile.changePage( "#Addbookmark", { transition: "slide", role: "dialog" } );
+		$('#bmark').val(surahName+' '+bookmarkAiyahNo);
+	});
+
+
+	$("#text").on("click", function(){
+		$.mobile.changePage( "#TextNotes", { transition: "slide", role: "dialog" } );
+		$('#N_Ayat').empty(); 
+		$('#top ul').append('<li><h2><div data-role="content" style="white-space:normal; text-align: right;">' + UsedAyat + '</div></h2></li>');
+
+	}); 
+
+// } 
+$("#T_text").on("click", function(){
+
+	if( jQuery.trim($('#myText').val()).length==0)
+		alert("Empty Note");
+
+	else{
+		var valt=$('#myText').val();
+		db.transaction(function(tx)
+		{
+			tx.executeSql('INSERT INTO TextNotes Values(?, ? , ?, ?)', [surahNo, aiyahNo, paraNo, valt]);
+
+});  
+
+
+		$.mobile.changePage( "#popup", { transition: "slide", direction:"reverse" } );
+		alert ("Note Inserted");
+	}
+}); 
+
+
+$("#selectAudio").on("click", function(){ 
+	$.mobile.changePage( "#selectSpeaker", { transition: "pop",role: "dialog"  } );
+});
+
+
+$("#voice").on("click", function(){
+
+	$.mobile.changePage( "#voiceNote", { transition: "slide",role: "dialog"  } );
+}); 
+
+$("#recordButton").on("click", function(){
+//   alert(recordNo);
+
+CheckRecord(MyRecordNo);
+
+});
+
+
+//////////Append Notes/////////////////
+$("#AddMyNotes").on("click", function(){
+	if(toggleDisplayTNotes){
+		toggleDisplayTNotes = 0;
+		removeTextNotes();
+	} else{
+		toggleDisplayTNotes = 1;
+
+		appendTextNotes();
+	}
+});
+
+
+//////////////Append VoiceNotes///////////////////////
+$("#VNotesPlay").on("click", function(){
+
+	if(toggleDisplayVNotes){
+		toggleDisplayVNotes = 0;
+		removeVoiceNotes();
+	} else{
+		toggleDisplayVNotes = 1;
+		appendVoiceNotes();
+	}
+
+});
+
+/////////////////////////////////////////
+
+
+$("input:radio[name=group1]").click(function() {
+	selectAudioToPlay = $(this).val();
+	$.mobile.changePage( "#popup", { transition: "pop", direction:"reverse" } );
+
+});
+
+$(".ayatclicks").on("click","li", function(){
+	aiyahNo=$(this).attr('id');
+	if(selectAudioToPlay == 1){
+		soundRecord =$(this).attr('data-Israr');
+		playAudio(soundRecord); 
+	} else if(selectAudioToPlay == 2){
+		soundRecord =$(this).attr('data-Aakif');
+		playAudio(soundRecord); 
+	} else if(selectAudioToPlay == 3){
+		soundRecord =$(this).attr('data-Naveed');
+		playAudio(soundRecord); 
+	} else if(selectAudioToPlay == 0){
+		if (mediaPlay == null){
+		} else{
+			mediaPlay.stop();
+		}
+
+	}
+
+
+
+});
+
+
+
+
+
+////////////////////recording/////////////////////////
+function CheckRecord(temp){
+	if (document.getElementById('recordButton').value=='Record'){
+		$("#recordButton").prop('value', 'Stop');
+		$("#recordButton").prop('label', 'Stop');
+		$("#recordButton").prop('name', 'Stop');
+		$("#recordButton").html('Stop');
+
+		$('#media').html('');
+		$('#media').append('Recording....');
+		SavePath(temp);
+
+	} 
+	else{
+		$("#recordButton").prop('value', 'Record');
+		$("#recordButton").attr('value', 'Record');
+		$("#recordButton").html('Record');
+
+
+		$('#media').html('');
+		$('#audio_position').html('');
+		clearInterval(recInterval);
+		toggleDisplayVNotes = 1;
+		mediaRec.stopRecord();
+		appendVoiceNotes();
+
+
+	}
+}
+
+/////save path vOICE NOTE//
+
+function SavePath(recordNo){
+	db = openDatabase(shortName, version, displayName,maxSize); 
+
+
+	var mp3name;
+
+	db.transaction(function(transaction) { 
+		transaction.executeSql('SELECT VNote FROM VoiceNotes where RecordNo='+recordNo+';', [],function(transaction, result) { 
+			var recoringNo;
+			if (result.rows.length == 0)
+			{
+				recoringNo =1;
+
+
+				mp3name = recordNo+'_'+recoringNo+'.mp3';
+				voiceNotePath = audioDir+mp3name;
+				$('#TestArea').html(voiceNotePath);
+
+				var query = 'INSERT INTO VoiceNotes Values('+surahNo+','+aiyahNo+','+recordNo+',\''+recordNo+'_'+recoringNo+'\')';
+				db.transaction(function(transaction) {transaction.executeSql(query,[],nullHandler,errorHandler); 
+				});
+
+				createVoiceFile(); 
+
+				var src = voiceNotePath;
+				mediaRec = new Media(src, onSuccess, onError);
+
+				recordAudio(mediaRec); 
+
+			}
+			else{
+				var lastRow = result.rows.length -1;
+				var row = result.rows.item(lastRow);
+				var item = row.VNote;
+				recoringNo = parseInt(item.substring(item.indexOf("_")+1))+1;
+
+
+				mp3name = recordNo+'_'+recoringNo+'.mp3';
+				voiceNotePath = audioDir+mp3name;
+				$('#TestArea').html(voiceNotePath);
+
+				var query = 'INSERT INTO VoiceNotes Values('+surahNo+','+aiyahNo+','+recordNo+',\''+recordNo+'_'+recoringNo+'\')';
+				db.transaction(function(transaction) {transaction.executeSql(query,[],nullHandler,errorHandler); 
+				});
+
+				createVoiceFile();
+
+				var src = voiceNotePath;
+				mediaRec = new Media(src, onSuccess, onError);
+				recordAudio(mediaRec);
+			}
+
+
+		},errorHandler); 
+},errorHandler,nullHandler); 
+
+
+	return;
+}
+
+s
+// onSuccess Callback
+//
+function onSuccess() {
+//console.log("recordAudio():Audio Success");
+}
+
+// onError Callback 
+//
+function onError(error) {
+/*alert('code: '    + error.code    + '\n' + 
+	'message: ' + error.message + '\n');*/
+}
+
+// Set audio position
+// 
+function setAudioPosition(position) {
+	document.getElementById('audio_position').innerHTML = position;
+}
+
+function setPlayAudioPosition(position) {
+// document.getElementById('AudioTime'+aiyahNo).innerHTML = position;
+}
+
+var ctheme = "";
+var colnum = 0;
+
+function ChangeTheme(col)
+{
+	ctheme = col;
+	if (col == "green")
+	{
+		document.getElementById('style').href='css/themes/default/green.css';
+	}
+	else if (col == "blue")
+	{
+		document.getElementById('style').href='css/themes/default/blue.css';
+	}
+	else if (col == "pink")
+	{
+		document.getElementById('style').href='css/themes/default/pink.css';
+	}
+	else if (col == "brown")
+	{
+		document.getElementById('style').href='css/themes/default/brown.css';
+	}
+
+//alert(ctheme + ".css applied");
+colnum++;
+
+db.transaction(function(tx) 
+{ 
+//tx.executeSql('UPDATE TABLE SETTINGS SET ColTheme="' + ctheme + '";');
+tx.executeSql('INSERT INTO SETTINGS Values('+colnum+', 20 , "'+ctheme+'");');
+});
+}
+
+function checkTheme() 
+{
+	db.transaction(function(transaction) 
+	{ 
+		transaction.executeSql('SELECT * FROM SETTINGS ;', [],function(transaction, result) 
+		{ 
+			if (result != null && result.rows != null) 
+			{ 
+				if(result.rows.length == 0)
+				{
+					db.transaction(function(tx)
+					{
+						tx.executeSql('INSERT INTO SETTINGS Values(1, 20 , "green");');
+					});
+					ctheme = "green";
+					colnum = 1;
+				} 
+				else
+				{
+					colnum = result.rows.length;
+					var n = colnum - 1;
+					var c = result.rows.item(n).ColTheme;
+
+					if (c == "green")
+					{
+						document.getElementById('style').href='css/themes/default/green.css';
+					}
+					else if (c == "blue")
+					{
+						document.getElementById('style').href='css/themes/default/blue.css';
+					}
+					else if (c == "pink")
+					{
+						document.getElementById('style').href='css/themes/default/pink.css';
+					}
+					else if (c == "brown")
+					{
+						document.getElementById('style').href='css/themes/default/brown.css';
+					}
+
+				}
+			}
+		},errorHandler); 
+	},errorHandler,nullHandler);
+
+
+
+}
+
+</script>
+
+
+</body> 
+</html>
